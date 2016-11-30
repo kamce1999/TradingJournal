@@ -1,31 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace TradingJournal
+namespace TradingJournal.DataModel
 {
     public class Position
     {
+        public Position()
+        {
+            Trades = new List<Trade>();
+        }
+
+        [Key]
+        public int PositionId { get; set; }
         public string Ticker { get; set; }                        
         public bool Closed { get; set; }
         public List<Trade> Trades { get; set; }
-    }
-
-    public class Trade
-    {
-        public string Ticker { get; set; }
-        public InstrumentType Instrument { get; set; }
-        public bool Short { get; set; }
-        public bool Close { get; set; }
-        public DateTime TransactionUtc { get; set; }
-        public int Shares { get; set; }
-    }
-
-    public enum InstrumentType
-    {
-        Common,
-        Call,
-        Put,
-        Future
     }
 }
